@@ -34,3 +34,9 @@ docker run -d --name mongoexpress --net mongo-net -p 8081:8081 -e ME_CONFIG_MONG
 
 
 ### Compose
+
+docker-compose
+    -f = file path
+
+up = start services
+down = stops containers and removes network
