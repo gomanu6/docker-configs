@@ -50,7 +50,7 @@ push = push to repo
 tag = rename the image
 
 image = manage images
-    prune = delete an image
+    prune = delete all images without any tags
         -a = delete all images
     inspect = show details of the image
         docker image inspect image_name
