@@ -41,6 +41,7 @@ run = pulls the image and runs container
     -rm = removes the container on exit
     --name = names the container
     --network = runs in the network
+        --network network_name
     --net = same as network
     -v = list volumes
         -v name:/path/inside/container
@@ -96,6 +97,7 @@ cp = copy file to or from the container
 
 docker container prune = deletes all stopped container
 
+docker container inspect name
 
 
 docker run -d --name mongodb --net mongo-net -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=secret mongo
