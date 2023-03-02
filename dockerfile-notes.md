@@ -40,3 +40,13 @@ volumes - managed by docker
 bind mounts - managed by you
 
 
+ENV PORT 80 = Set the default value in the dockerfile, for building the image
+
+EXPOSE $PORT = use the variable in the same dockerfile
+
+process.env.PORT = inside code
+
+-p 3000:8000 --env PORT=8000 = set during docker run 
+-e = same as --env
+
+--env-file ./.env = point to an env file in the current folder

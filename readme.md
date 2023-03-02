@@ -43,6 +43,7 @@ run = pulls the image and runs container
     --network = runs in the network
     --net = same as network
     -v = list volumes
+        -v name:/path/inside/container
     -e variable=value = environment variables
         -e MONGO_INITDB_ROOT_USERNAME=admin
 
@@ -100,6 +101,13 @@ docker container prune = deletes all stopped container
 docker run -d --name mongodb --net mongo-net -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=secret mongo
 
 docker run -d --name mongoexpress --net mongo-net -p 8081:8081 -e ME_CONFIG_MONGODB_ADMINUSERNAME=mongoadmin -e ME_CONFIG_MONGODB_ADMINPASSWORD=secret -e ME_CONFIG_MONGODB_SERVER=mongodb mongo-express
+
+
+
+###  Docker Ignore
+
+.dockerignore
+- specify which files/folders not to be copied to the container
 
 
 ### Compose
