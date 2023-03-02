@@ -8,7 +8,7 @@ COPY source_host container_dest
 
 CMD ["node", "server.js"] = entrypoint command
 
-### Commands
+### Instructions
 
 
 FROM = base image name
@@ -31,6 +31,12 @@ CMD = command is run when the container is started
     CMD ['node', 'server.js']
 
 
+VOLUME [ "/path/inside/container" ] = Anonymous volume
+the code needs to support files being written on a different file system
 
+volumes - managed by docker
+    anonymous = exists as long as container is running
+    named
+bind mounts - managed by you
 
 

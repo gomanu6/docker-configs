@@ -3,6 +3,7 @@
 ### Commands
 images = lists images available locally
 pull = pull image
+push = push image to repository
 
 ps = list running images
     -a = list all containers
@@ -17,6 +18,18 @@ network
     -ls = list networks
     -create network_name = create network 
     docker network ls = list networks
+
+
+login = login to docker
+logout = logout of docker
+
+volume
+    -ls = list
+    -create
+    -inspect
+    -rm
+    -prune
+
 
 ### Run Command
 
@@ -48,6 +61,7 @@ rmi = remove image
 push = push to repo
 
 tag = rename the image
+    docker tag old_name:ver new_name:ver
 
 image = manage images
     prune = delete all images without any tags

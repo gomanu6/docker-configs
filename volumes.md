@@ -1,6 +1,6 @@
 ### Volumes
 
-#### Host Volume
+#### Host Volume (Bind Mounts)
 decide host folder to mount in the container
 -v host_dir:container_dir
 
@@ -19,6 +19,8 @@ decide host folder to mount in the container
 volumes:
     - db-data:/var/lib/mysql/data
 
+
+For volume clashes, the longest internal 
 
 ### Default data Dirs for DBs
 
@@ -39,3 +41,13 @@ C:\ProgramData\docker\volumes
 
 ### Linux
 /var/lib/docker/volumes
+
+
+docker run -d --rm -p 3000:80 --name feedback-app -v feedback:/app/feedback -v "D:\local\path\app:/app:ro" -v /app/node_modules feedback-app:volumes
+
+the third anonymous volume will remain as it is the longer path as compared to the second bind mount
+-v localpath:containerpath:ro
+    ro = read only
+    default = rw
+
+docker volume create [options] vol_name
