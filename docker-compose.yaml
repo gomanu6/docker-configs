@@ -1,7 +1,8 @@
 version: '3.8'
 services:
-  mongodb:
+  mongodb: # --> container name is based on foldername_servicename_number
     image: mongo
+    container_name: mongodb # --> force use of the container name
     volumes:
       - data:/data/db
     env_file:
