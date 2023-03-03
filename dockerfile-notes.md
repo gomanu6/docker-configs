@@ -30,6 +30,12 @@ EXPOSE 80 = expose port 80 in the image
 CMD = command is run when the container is started
     CMD ['node', 'server.js']
 
+ENTRYPOINT = sets the context for commands run during docker run
+    ENTRYPOINT ["npm"]
+        - allows to append any npm command during docker run
+        - protects from running any other commands in the container shell 
+        docker run -it -v local_path:cont_path imagename init --> instead of npm init
+
 
 VOLUME [ "/path/inside/container" ] = Anonymous volume
 the code needs to support files being written on a different file system
