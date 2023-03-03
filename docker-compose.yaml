@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - data:/data/db
+    env_file:
+      - ./env/mongo.env
+    # environment:
+    #   - MONGODB_INIT_USERNAME=root --> syntax 1
+    #   MONGODB_INIT_PASSWORD: secret --> syntax 2
+    networks:
+      - mongonet
+  backend:
+    build: ./backend # --> relative path to dockerfile
+    # build:
+    #   context: ./backend # --> path to dockerfile, folder where image is built
+    #   dockerfile: Dockerfile # --> name of dockerfile
+    #   args:
+    #     some-arg: 1
+    ports:
+      - '80:80'
+    networks:
+      - mongonet
+    volumes:
+      - logs:/app/logs
+      - ./backend:/app # --> relative host path from yaml file
+      - /app/node_modules
+    env_file:
+      - ./backend/backend.env
+    depends_on:
+      - mongodb # --> start this service only after the dependency is up
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true # --> for the -i flag
+    tty: true # --> for the -t flag
+    depends_on:
+      - backend
+
+  volumes:
+    data:
+    logs:
+    # bind mounts and anonymous volumes cannot / should not be added here
