@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   server:
-    image: nginx:stable
+    image: nginx:stable-alpine
     ports:
       - '8000:80'
     volumes:
@@ -16,7 +16,7 @@ services:
       context: ./dockerfiles
       dockerfile: php.dockerfile
     volumes:
-      - ./src:/var/www/html # :delegated writes back to the host folder in batches
+      - ./src:/var/www/html
     ports:
       - "3000:9000"
   mysql:
@@ -29,8 +29,25 @@ services:
       dockerfile: composer.dockerfile
     volumes:
       - ./src:/var/www/html
-  # artisan:
-  # npm:
-
+  artisan:
+    build:
+      context: ./dockerfiles
+      dockerfile: php.dockerfile
+    volumes:
+      - ./src:/var/www/html
+    entrypoint: ["php", "/var/www/html/artisan"]
+    # this adds or overwrites the entrypoint command in the docker file
+  npm:
+    image: node
+    working_dir: "/var/www/html"
+    entrypoint: ["npm"]
+    volumes:
+      - ./src:/var/www/html
+  
   # Create a Laravel project using the utility container composer
   # docker-compose run --rm composer create-project --prefer-dist laravel/laravel .
+  # docker-compose up -d server
+  # docker-compose run --rm artisan migrate
+  
+  
+  # :delegated writes back to the host folder in batches

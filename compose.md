@@ -1,4 +1,4 @@
-###
+### Docker Compose
 
 docker-compose 
     up = start services
@@ -20,3 +20,19 @@ docker-compose
         --rm = remove on stop
         --name = assign a name
         docker-compose run [options] servicename [ARGS / Commands]
+
+
+### Docker compose yaml options
+
+#### Specify an image to be built
+
+image: ngin:stable
+
+build:
+    context: local_path
+    # context sets the folder where the dockerfile is present and also where the container is built
+    # references to any folder outside the context will have to be specified accordingly
+    dockerfile: name_of_dockerfile
+
+
+

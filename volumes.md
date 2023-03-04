@@ -16,7 +16,10 @@ usually used in development to reflect changes in code
 - can reference volumes
 - managed by docker
 - mount volumes on several containers
-    -v name:container_dir
+    -v name:container_dir:[Options]
+    Options
+        ro = readonly
+        delegated = write to host system in batches
 
 
 volumes:
