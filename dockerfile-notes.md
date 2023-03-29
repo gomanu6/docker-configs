@@ -4,7 +4,20 @@ ENV key=value
 
 RUN command
 
-COPY source_host container_dest
+USER username
+
+RUN mkdir /home/node/code --> create and owns the dir
+
+WORKDIR /home/node/code --> will create if doesnt exist (but owned by root) 
+
+RUN npm ci --> instead of install, uses package-lock.json
+
+COPY --chown=user:group source_host container_dest
+
+ADD --chown=user:group source_host container_dest
+add can do additionally
+    - retrieve a file from the network / internet
+    - unzip files 
 
 CMD ["node", "server.js"] = entrypoint command
 
@@ -25,7 +38,9 @@ COPY = copy the files/folders
 RUN = runs command in containers working dir
         is executed wheever the image is buing built
 
-EXPOSE 80 = expose port 80 in the image
+EXPOSE 80 = expose port 80 in the image, use with -P flag while ducker run to choose a randon port on the localhost to bind to
+    docker run --it -P 
+        -P exposes all the ports mentioned in the dockerfile to random local ports
 
 CMD = command is run when the container is started
     CMD ['node', 'server.js']

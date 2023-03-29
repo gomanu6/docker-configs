@@ -1,6 +1,6 @@
 ### Docker Compose
 
-docker-compose 
+docker compose 
     up = start services
         -d = start in detached mode
         --build = force build a new image

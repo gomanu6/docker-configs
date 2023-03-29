@@ -7,11 +7,19 @@ push = push image to repository
 
 ps = list running images
     -a = list all containers
+    -q = quiet, only display container ids
+        docker ps -q
+
+kill = kill a container
+    -s = signal to send the container
+        docker kill $(docker ps -q) = kills all running containers
 
 rm = remove container
 logs = shows the container logs
     -f stream the log
-exec = execute command inside container
+    docker logs container_name
+
+exec = execute command inside an existing container
     -it = interactive mode
     docker exec -it container_name command
 network
@@ -30,10 +38,25 @@ volume
     -rm
     -prune
 
+pause container_name
+
+unpause container_name
+
+history = show history of container
+    -H = Human readable dates, sizes
+    -q = quiet
+        docker history container_name
+
+info = shows info about host docker install
+
+top = shows info for running processes inside container
+    docker top container_name
+
+search 
 
 ### Run Command
 
-run = pulls the image and runs container
+run = pulls the image and runs a NEW container
     -p localport:containerport = binds local port to container port
         -p 3001:3000
     -d = detached mode / daemon
@@ -47,6 +70,8 @@ run = pulls the image and runs container
         -v name:/path/inside/container
     -e variable=value = environment variables
         -e MONGO_INITDB_ROOT_USERNAME=admin
+    --init = runs the container with tini>init to respond to Ctrl + C signal
+    
 
 
 
@@ -84,6 +109,8 @@ start = start a container
     -i = interactive mode
 
 stop = stop a running container
+
+restart = restart, may not restart if the running app doesnt recognise restart and may hard restart
 
 attach = attach to a running container
     docker container attach container_name
