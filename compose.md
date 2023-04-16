@@ -4,6 +4,8 @@ docker compose
     up = start services
         -d = start in detached mode
         --build = force build a new image
+        --scale = no of containers to run
+            docker compose up --scale web=10
 
     down = stop services, remove networks
         -v = remove volumes
