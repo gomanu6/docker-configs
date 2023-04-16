@@ -1,4 +1,4 @@
-*/*.env
-*/*/*.env
+# */*.env
+# */*/*.env
 pypublic/pysrvenv
 php_setup/src
